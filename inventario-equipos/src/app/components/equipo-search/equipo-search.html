@@ -1,0 +1,31 @@
+<section class="card equipo-search">
+  <h2>Buscar equipo por codigo</h2>
+
+  <form class="search-form" (ngSubmit)="buscar()">
+    <input
+      name="codigo"
+      type="text"
+      placeholder="Ej. EQ-001"
+      [(ngModel)]="codigo"
+      autocomplete="off"
+    />
+    <button type="submit" class="btn btn-primary" [disabled]="buscando()">
+      {{ buscando() ? 'Buscando...' : 'Buscar' }}
+    </button>
+  </form>
+
+  @if (resultado(); as equipo) {
+    <div class="resultado">
+      <div><span class="label">Codigo</span><span class="mono">{{ equipo.codigo }}</span></div>
+      <div><span class="label">Nombre</span><span>{{ equipo.nombre }}</span></div>
+      <div><span class="label">Categoria</span><span>{{ equipo.categoria }}</span></div>
+      <div><span class="label">Laboratorio</span><span>{{ equipo.laboratorio }}</span></div>
+      <div><span class="label">Responsable</span><span>{{ equipo.responsable }}</span></div>
+      <div><span class="label">Estado</span><span [class]="claseEstado(equipo.estado)">{{ equipo.estado }}</span></div>
+    </div>
+  }
+
+  @if (noEncontrado()) {
+    <p class="error-inline">No existe ningun equipo con el codigo "{{ codigo }}".</p>
+  }
+</section>

@@ -1,0 +1,12 @@
+.app-footer {
+  margin-top: auto;
+  padding: 1rem 1.75rem;
+  background: var(--color-primary);
+  color: #94a3b8;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.app-footer strong {
+  color: var(--color-accent-light);
+}

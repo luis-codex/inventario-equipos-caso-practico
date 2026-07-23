@@ -1,0 +1,15 @@
+@if (!connectivity.online() || store.usandoCache()) {
+  <div class="offline-banner">
+    @if (!connectivity.online()) {
+      <span>⚠ Sin conexion a Internet.</span>
+    }
+    @if (store.usandoCache()) {
+      <span>
+        Mostrando la ultima informacion consultada
+        @if (store.ultimaActualizacion()) {
+          (guardada el {{ store.ultimaActualizacion() | date: 'dd/MM/yyyy HH:mm' }})
+        }.
+      </span>
+    }
+  </div>
+}

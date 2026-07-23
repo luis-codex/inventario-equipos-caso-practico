@@ -1,0 +1,74 @@
+.list-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.list-header h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  color: var(--color-primary);
+}
+
+.hint {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.mensaje-inline {
+  background: #ecfeff;
+  color: #155e75;
+  border: 1px solid #a5f3fc;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.error-inline {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th {
+  text-align: left;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+td {
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.estado-select {
+  margin-left: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  padding: 0.15rem 0.35rem;
+  font-size: 0.8rem;
+}

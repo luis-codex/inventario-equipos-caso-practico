@@ -1,0 +1,44 @@
+<section class="card equipo-form">
+  <h2>Registrar nuevo equipo</h2>
+
+  <form (ngSubmit)="registrar()">
+    <div class="grid">
+      <label>
+        Codigo
+        <input name="codigo" type="text" placeholder="EQ-007" [(ngModel)]="modelo.codigo" required />
+      </label>
+      <label>
+        Nombre
+        <input name="nombre" type="text" placeholder="Laptop HP EliteBook" [(ngModel)]="modelo.nombre" required />
+      </label>
+      <label>
+        Categoria
+        <input name="categoria" type="text" placeholder="Computador portatil" [(ngModel)]="modelo.categoria" required />
+      </label>
+      <label>
+        Laboratorio
+        <input name="laboratorio" type="text" placeholder="Laboratorio de Software" [(ngModel)]="modelo.laboratorio" required />
+      </label>
+      <label>
+        Responsable
+        <input name="responsable" type="text" placeholder="Nombre del responsable" [(ngModel)]="modelo.responsable" required />
+      </label>
+      <label>
+        Estado inicial
+        <select name="estado" [(ngModel)]="modelo.estado">
+          @for (estado of estados; track estado) {
+            <option [value]="estado">{{ estado }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-secondary" [disabled]="guardando()">
+      {{ guardando() ? 'Registrando...' : 'Registrar equipo' }}
+    </button>
+  </form>
+
+  @if (mensaje(); as m) {
+    <p [class]="m.tipo === 'ok' ? 'mensaje-ok' : 'error-inline'">{{ m.texto }}</p>
+  }
+</section>

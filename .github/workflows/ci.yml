@@ -1,0 +1,74 @@
+name: CI Inventario de Equipos
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      # Instalacion de dependencias
+      - name: Install
+        run: npm ci
+
+      # Ejecucion de pruebas (controlador con pool de MySQL simulado, sin BD real)
+      - name: Test
+        run: npm test
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: inventario-equipos
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: inventario-equipos/package-lock.json
+
+      # Instalacion de dependencias
+      - name: Install
+        run: npm ci
+
+      # Ejecucion de pruebas unitarias (Vitest, via el builder de Angular)
+      - name: Test
+        run: npm test
+
+      # Compilacion del proyecto en modo produccion
+      - name: Build
+        run: npm run build
+
+  docker:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Compilacion de las imagenes Docker del backend y del frontend
+      - name: Build backend image
+        run: docker build -t inventario-equipos-backend ./backend
+
+      - name: Build frontend image
+        run: docker build -t inventario-equipos-frontend ./inventario-equipos

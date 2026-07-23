@@ -1,0 +1,57 @@
+<section class="card equipo-list">
+  <div class="list-header">
+    <h2>Equipos registrados</h2>
+    @if (store.loading()) {
+      <span class="hint">Cargando...</span>
+    }
+  </div>
+
+  @if (mensaje) {
+    <p class="mensaje-inline">{{ mensaje }}</p>
+  }
+
+  @if (store.error() && !store.usandoCache() && store.equipos().length === 0) {
+    <p class="error-inline">{{ store.error() }}</p>
+  }
+
+  @if (store.equipos().length > 0) {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Laboratorio</th>
+            <th>Responsable</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (equipo of store.equipos(); track equipo.codigo) {
+            <tr>
+              <td class="mono">{{ equipo.codigo }}</td>
+              <td>{{ equipo.nombre }}</td>
+              <td>{{ equipo.categoria }}</td>
+              <td>{{ equipo.laboratorio }}</td>
+              <td>{{ equipo.responsable }}</td>
+              <td>
+                <span [class]="claseEstado(equipo.estado)">{{ equipo.estado }}</span>
+                <select
+                  class="estado-select"
+                  (change)="cambiarEstado(equipo, $any($event.target).value)"
+                >
+                  @for (estado of estados; track estado) {
+                    <option [value]="estado" [selected]="estado === equipo.estado">{{ estado }}</option>
+                  }
+                </select>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else if (!store.loading()) {
+    <p class="hint">No hay equipos registrados todavia.</p>
+  }
+</section>
