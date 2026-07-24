@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS inventario_equipos;
 USE inventario_equipos;
+SET NAMES utf8mb4;
 
 CREATE TABLE IF NOT EXISTS equipos (
   codigo VARCHAR(20) PRIMARY KEY,
