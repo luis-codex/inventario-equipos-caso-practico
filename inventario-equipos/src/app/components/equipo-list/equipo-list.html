@@ -1,4 +1,4 @@
-<section class="card equipo-list">
+<section class="equipo-list">
   <div class="list-header">
     <h2>Equipos registrados</h2>
     @if (store.loading()) {
@@ -15,41 +15,38 @@
   }
 
   @if (store.equipos().length > 0) {
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Laboratorio</th>
-            <th>Responsable</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (equipo of store.equipos(); track equipo.codigo) {
-            <tr>
-              <td class="mono">{{ equipo.codigo }}</td>
-              <td>{{ equipo.nombre }}</td>
-              <td>{{ equipo.categoria }}</td>
-              <td>{{ equipo.laboratorio }}</td>
-              <td>{{ equipo.responsable }}</td>
-              <td>
-                <span [class]="claseEstado(equipo.estado)">{{ equipo.estado }}</span>
-                <select
-                  class="estado-select"
-                  (change)="cambiarEstado(equipo, $any($event.target).value)"
-                >
-                  @for (estado of estados; track estado) {
-                    <option [value]="estado" [selected]="estado === equipo.estado">{{ estado }}</option>
-                  }
-                </select>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+    <div class="equipo-grid">
+      @for (equipo of store.equipos(); track equipo.codigo) {
+        <article class="card equipo-card">
+          <div class="equipo-card-top">
+            <span class="mono">{{ equipo.codigo }}</span>
+            <span [class]="claseEstado(equipo.estado)">{{ equipo.estado }}</span>
+          </div>
+          <h3>{{ equipo.nombre }}</h3>
+          <dl>
+            <div>
+              <dt>Categoria</dt>
+              <dd>{{ equipo.categoria }}</dd>
+            </div>
+            <div>
+              <dt>Laboratorio</dt>
+              <dd>{{ equipo.laboratorio }}</dd>
+            </div>
+            <div>
+              <dt>Responsable</dt>
+              <dd>{{ equipo.responsable }}</dd>
+            </div>
+          </dl>
+          <label class="equipo-card-estado">
+            Cambiar estado
+            <select (change)="cambiarEstado(equipo, $any($event.target).value)">
+              @for (estado of estados; track estado) {
+                <option [value]="estado" [selected]="estado === equipo.estado">{{ estado }}</option>
+              }
+            </select>
+          </label>
+        </article>
+      }
     </div>
   } @else if (!store.loading()) {
     <p class="hint">No hay equipos registrados todavia.</p>

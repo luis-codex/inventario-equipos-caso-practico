@@ -3,8 +3,8 @@
   "short_name": "Inventario Equipos",
   "description": "Consulta y administra los equipos de los laboratorios institucionales: registro, busqueda por codigo y actualizacion de estado.",
   "display": "standalone",
-  "theme_color": "#0F172A",
-  "background_color": "#0F172A",
+  "theme_color": "#0B3D2E",
+  "background_color": "#F3FAF7",
   "scope": "./",
   "start_url": "./",
   "icons": [

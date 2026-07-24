@@ -3,9 +3,13 @@
   <app-offline-banner />
 
   <main class="app-main">
-    <app-equipo-search />
-    <app-equipo-form />
-    <app-equipo-list />
+    <aside class="app-sidebar">
+      <app-equipo-search />
+      <app-equipo-form />
+    </aside>
+    <section class="app-content">
+      <app-equipo-list />
+    </section>
   </main>
 
   <app-footer />

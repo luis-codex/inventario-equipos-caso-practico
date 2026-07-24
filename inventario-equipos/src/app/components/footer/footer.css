@@ -2,9 +2,10 @@
   margin-top: auto;
   padding: 1rem 1.75rem;
   background: var(--color-primary);
-  color: #94a3b8;
+  color: #9dc7b6;
   text-align: center;
   font-size: 0.82rem;
+  border-top: 3px solid var(--color-accent);
 }
 
 .app-footer strong {
